@@ -4,7 +4,7 @@ const creds = require('../../client_secret.json');
 
 async function accessSpreadsheet(mail){
   return new Promise(async (resolve,reject)=>{
-    const doc = new GoogleSpreadsheet('process.env.sheet');
+    const doc = new GoogleSpreadsheet(process.env.SHEET);
     await promisify(doc.useServiceAccountAuth)(creds);
     const info = await promisify(doc.getInfo)();
     const sheet = info.worksheets[0];
